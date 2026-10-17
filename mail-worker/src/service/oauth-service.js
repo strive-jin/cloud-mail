@@ -153,7 +153,7 @@ const oauthService = {
 		});
 
 		if (!tokenRes.ok) {
-			throw new BizError(tokenRes.statusText);
+			throw new BizError('googleToken ' + tokenRes.status + ' ' + (await tokenRes.text()).slice(0, 300));
 		}
 
 		const token = await tokenRes.json();
@@ -165,7 +165,7 @@ const oauthService = {
 		});
 
 		if (!userRes.ok) {
-			throw new BizError(userRes.statusText);
+			throw new BizError('googleUserinfo ' + userRes.status + ' ' + (await userRes.text()).slice(0, 300));
 		}
 
 		const userInfo = await userRes.json();
